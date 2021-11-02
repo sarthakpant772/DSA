@@ -1,8 +1,10 @@
 #include<iostream>
 #include<stack>
+#include<queue>
+
 using namespace std;
  
-// Data structure to store a binary tree node
+
 struct Node
 {
     int data;
@@ -15,20 +17,40 @@ struct Node
     }
 };
 
-void postorder(Node* root){
+void inorder(Node* root){
     if(root==nullptr) 
         return ;
-
-
-    postorder(root->left);
-    postorder(root->right);
-
+    
+    inorder(root->left);
     cout<<root->data<<" ";
-
+    inorder(root->right);
 }
 
+void leftview(Node* root){
+    if(root==NULL){
+        return;
+    }
 
-
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty()){
+        
+        int n=q.size();
+        for(int i=1;i<=n;++i){
+            Node* temp=q.front();
+            q.pop();
+            if(i==1){
+                cout<<temp->data<<" ";
+            }
+            if(temp->left){
+                q.push(temp->left);
+            }
+            if(temp->right){
+                q.push(temp->right);
+            }
+        }
+    }
+}
 
 int main()
 {
@@ -54,7 +76,7 @@ int main()
     root->right->left->left = new Node(7);
     root->right->left->right = new Node(8);
  
-    postorder(root);
+    leftview(root);
  
     return 0;
 }
