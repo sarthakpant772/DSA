@@ -270,14 +270,7 @@ int main()
 	cout << "Heap elements after insertion:\n";
 	printHeap(_heap);
 
-	Node *temp = getMin(_heap);
-	cout << "\nMinimum element of heap "
-		<< temp->data << "\n";
-
-	// Delete minimum element of heap
-	_heap = extractMin(_heap);
-	cout << "Heap after deletion of minimum element\n";
-	printHeap(_heap);
+	
 
 	return 0;
 }
